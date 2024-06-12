@@ -9,7 +9,6 @@ import { User } from '../../models/user';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  
   @Input() users: User[] = [];
 
   @Output() idUserEventEmitter = new EventEmitter();
@@ -17,11 +16,7 @@ export class UserComponent {
   @Output() selectedUserEventEmitter = new EventEmitter();
 
   onRemoveUser(id: number): void {
-    const confirmRemove = confirm('Estas seguro que desea eliminar?');
-
-    if (confirmRemove) {
-      this.idUserEventEmitter.emit(id);
-    }
+    this.idUserEventEmitter.emit(id);
   }
 
   onSelectedUser(user: User): void {
