@@ -13,7 +13,9 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './user-app.component.css',
 })
 export class UserAppComponent implements OnInit {
+
   users: User[] = [];
+  
   userSelected: User;
 
   constructor(private service: UserService) {
