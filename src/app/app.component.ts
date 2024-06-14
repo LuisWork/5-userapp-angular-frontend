@@ -10,5 +10,5 @@ import { UserAppComponent } from './components/user-app/user-app.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Listado de Usuarios';
+
 }
