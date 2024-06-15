@@ -16,7 +16,11 @@ export class UserComponent {
 
   users: User[] = [];
 
-  constructor(private sharingData: SharingDataService, private service: UserService, private router: Router) {
+  constructor(
+    private sharingData: SharingDataService,
+    private service: UserService,
+    private router: Router
+  ) {
     if (this.router.getCurrentNavigation()?.extras.state) {
       this.users = this.router.getCurrentNavigation()?.extras.state!['users'];
     } else {
@@ -29,6 +33,6 @@ export class UserComponent {
   }
 
   onSelectedUser(user: User): void {
-    this.sharingData.selectedUserEventEmitter.emit(user);
+    this.router.navigate(['/users/edit', user.id], { state: { user } });
   }
 }
