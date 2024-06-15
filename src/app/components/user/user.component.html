@@ -25,7 +25,7 @@
                 <button class="btn btn-danger btn-sm" (click)="onRemoveUser(user.id)">Remove</button>
             </td>
             <td>
-                <button class="btn btn-dark btn-sm" (click)="onSelectedUser(user)">Update</button>
+                <button class="btn btn-dark btn-sm" [routerLink]="['/users/edit', user.id]">Update</button>
             </td>
         </tr>
         }
