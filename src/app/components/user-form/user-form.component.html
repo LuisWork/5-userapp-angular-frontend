@@ -7,31 +7,49 @@
             <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
                 <div>
                     <input type="text" class="form-control my-2" placeholder="Escribe tu nombre" name="name"
-                        [(ngModel)]="user.name" autocomplete="off" required #name="ngModel">
-                    @if (name.invalid && (name.dirty || name.touched)) {
-                    @if(name.errors!['required']) {
+                        [(ngModel)]="user.name" autocomplete="off" #name="ngModel">
+
+                    @if(errors.name) {
+                    <div class="text-danger">
+                        {{errors?.name}}
+                    </div>
+                    }
+
+                    <!-- @if (name.invalid && (name.dirty || name.touched)) {
+                    @if(name.errors!['']) {
                     <div class="text-danger">
                         El nombre es requerido.
                     </div>
                     }
-                    }
+                    } -->
                 </div>
                 <div>
                     <input type="text" class="form-control my-2" placeholder="Escribe tu apellido" name="lastname"
-                        [(ngModel)]="user.lastname" autocomplete="off" required #lastname="ngModel">
-                    @if (lastname.invalid && (lastname.dirty || lastname.touched)) {
-                    @if(lastname.errors!['required']) {
+                        [(ngModel)]="user.lastname" autocomplete="off" #lastname="ngModel">
+                    @if(errors.lastname) {
+                    <div class="text-danger">
+                        {{errors?.lastname}}
+                    </div>
+                    }
+                    <!-- @if (lastname.invalid && (lastname.dirty || lastname.touched)) {
+                    @if(lastname.errors!['']) {
                     <div class="text-danger">
                         El apellido es requerido.
                     </div>
                     }
-                    }
+                    } -->
                 </div>
                 <div>
                     <input type="email" class="form-control my-2" placeholder="Escribe tu email" name="email"
-                        [(ngModel)]="user.email" autocomplete="off" required email #email="ngModel">
-                    @if (email.invalid && (email.dirty || email.touched)) {
-                    @if(email.errors!['required']) {
+                        [(ngModel)]="user.email" autocomplete="off" #email="ngModel">
+                    @if(errors.email) {
+                    <div class="text-danger">
+                        {{errors?.email}}
+                    </div>
+                    }
+
+                    <!-- @if (email.invalid && (email.dirty || email.touched)) {
+                    @if(email.errors!['']) {
                     <div class="text-danger">
                         El email es requerido.
                     </div>
@@ -41,13 +59,18 @@
                         El email debe tener el formato correcto.
                     </div>
                     }
-                    }
+                    } -->
                 </div>
                 <div>
                     <input class="form-control my-2" placeholder="Escribe tu nombre de usuario" name="username"
-                        [(ngModel)]="user.username" autocomplete="off" required minlength="5" #username="ngModel">
-                    @if (username.invalid && (username.dirty || username.touched)) {
-                    @if(username.errors!['required']) {
+                        [(ngModel)]="user.username" autocomplete="off" #username="ngModel">
+                    @if(errors.username) {
+                    <div class="text-danger">
+                        {{errors?.username}}
+                    </div>
+                    }
+                    <!-- @if (username.invalid && (username.dirty || username.touched)) {
+                    @if(username.errors!['']) {
                     <div class="text-danger">
                         El nombre de usuario es requerido.
                     </div>
@@ -57,13 +80,18 @@
                         El nombre de usuario debe tener al menos 5 caracteres.
                     </div>
                     }
-                    }
+                    } -->
                 </div>
                 <div>
                     <input type="password" class="form-control my-2" placeholder="Escribe tu contraseña" name="password"
-                        [(ngModel)]="user.password" autocomplete="off" required minlength="6" #password="ngModel">
-                    @if (password.invalid && (password.dirty || password.touched)) {
-                    @if(password.errors!['required']) {
+                        [(ngModel)]="user.password" autocomplete="off" #password="ngModel">
+                    @if(errors.password) {
+                    <div class="text-danger">
+                        {{errors?.password}}
+                    </div>
+                    }
+                    <!-- @if (password.invalid && (password.dirty || password.touched)) {
+                    @if(password.errors!['']) {
                     <div class="text-danger">
                         La contraseña es requerida.
                     </div>
@@ -73,10 +101,10 @@
                         La contraseña debe tener al menos 6 caracteres.
                     </div>
                     }
-                    }
+                    } -->
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-success" [disabled]="userForm.invalid">
+                    <button type="submit" class="btn btn-success"> <!-- [disabled]="userForm.invalid" -->
                         {{(user.id > 0) ? 'Update': 'Create'}}
                     </button>
                     <button type="button" class="btn btn-dark m-1" (click)="onClear(userForm)">Clear</button>

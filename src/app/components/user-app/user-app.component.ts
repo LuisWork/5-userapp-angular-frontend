@@ -39,20 +39,34 @@ export class UserAppComponent implements OnInit {
   addUser() {
     this.sharingData.newUserEventEmitter.subscribe((user) => {
       if (user.id > 0) {
-        this.service.update(user).subscribe((userUpdated) => {
-          this.users = this.users.map((u) =>
-            u.id == userUpdated.id ? { ...userUpdated } : u
-          );
-          this.router.navigate(['/users'], { state: { users: this.users } });
+        this.service.update(user).subscribe({
+          next: (userUpdated) => {
+            this.users = this.users.map((u) =>
+              u.id == userUpdated.id ? { ...userUpdated } : u
+            );
+            this.router.navigate(['/users'], { state: { users: this.users } });
+            this.showUpdateAlertSuccess();
+          },
+          error: (err) => {
+            if (err.status == 400) {
+              this.sharingData.errorsUserFormEventEmitter.emit(err.error);
+            }
+          },
         });
       } else {
-        this.service.create(user).subscribe((userNew) => {
-          this.users = [...this.users, { ...userNew }];
-          this.router.navigate(['/users'], { state: { users: this.users } });
+        this.service.create(user).subscribe({
+          next: (userNew) => {
+            this.users = [...this.users, { ...userNew }];
+            this.router.navigate(['/users'], { state: { users: this.users } });
+            this.showCreateAlertSuccess();
+          },
+          error: (err) => {
+            if (err.status == 400) {
+              this.sharingData.errorsUserFormEventEmitter.emit(err.error);
+            }
+          },
         });
       }
-
-      this.showCreateAlert();
     });
   }
 
@@ -90,9 +104,23 @@ export class UserAppComponent implements OnInit {
     });
   }
 
-  showCreateAlert(): void {
+  showCreateAlertSuccess(): void {
     Swal.fire({
       title: 'Usuario guardado! 😊',
+      icon: 'success',
+    });
+  }
+
+  showUpdateAlertSuccess(): void {
+    Swal.fire({
+      title: 'Usuario actualizado! 😊',
+      icon: 'success',
+    });
+  }
+
+  showDeleteAlertSuccess(): void {
+    Swal.fire({
+      title: 'Usuario eliminado! 😊',
       icon: 'success',
     });
   }
