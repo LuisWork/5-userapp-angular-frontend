@@ -1,12 +1,23 @@
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title">LogIn Page</h5>
-    </div>
-    <div class="card-body">
-        <form (ngSubmit)="onSubmit()">
-            <input name="username" class="form-control my-2 w-25" autocomplete="off" placeholder="Username" [(ngModel)]="user.username">
-            <input name="password" type="password" class="form-control my-2 w-25" placeholder="Password" [(ngModel)]="user.password">
-            <button class="btn btn-primary" type="submit">LogIn</button>
-        </form>
+<div class="card mb-3 w-90 shadow-lg rounded-5">
+    <div class="row g-0">
+        <div class="col-8 bg-primary rounded-start-5"
+            style="background-image: url('../../../assets/img/minimal.jpg'); background-position: bottom; background-size: cover;">
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title text-center">LogIn Page🔒</h5>
+                <div class="card-body col">
+                    <form (ngSubmit)="onSubmit()">
+                        <label for="username">Username: 🧍🏻</label>
+                        <input name="username" class="form-control my-3" autocomplete="off" placeholder="Username"
+                            [(ngModel)]="user.username">
+                        <label for="password">Password: 🔐</label>
+                        <input name="password" type="password" class="form-control my-2" placeholder="Password"
+                            [(ngModel)]="user.password">
+                        <button class="btn btn-primary my-2 shadow-lg" type="submit">LogIn</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
